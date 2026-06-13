@@ -713,8 +713,8 @@ async def error_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
 
 # ============= ЗАПУСК =============
 def main() -> None:
-    application = Application.builder().token("8461125070:AAEhzywv7k9a8U0r7HA4jzhNlX8umRZt0Tc").build()
-    
+    token = os.environ.get("BOT_TOKEN", "8461125070:AAEhzywv7k9a8U0r7HA4jzhNlX8umRZt0Tc")
+    application = Application.builder().token(token).build()
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CallbackQueryHandler(button_handler))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text_messages))
